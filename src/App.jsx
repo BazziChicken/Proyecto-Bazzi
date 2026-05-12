@@ -3,10 +3,12 @@ import { menu } from "./data/menu"
 import Header from "./components/Header"
 import MenuGrid from "./components/MenuGrid"
 import Cart from "./components/Cart"
+import Checkout from "./components/Checkout"
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState(menu[0].category)
   const [cart, setCart] = useState({})
+  const [showCheckout, setShowCheckout] = useState(false)
 
   const cartCount = Object.values(cart).reduce((sum, item) => sum + item.qty, 0)
 
@@ -29,8 +31,12 @@ export default function App() {
     })
   }
 
+  if (showCheckout) {
+    return <Checkout cart={cart} onBack={() => setShowCheckout(false)} />
+  }
+
   return (
-    <div className="bg-neutral-100 min-h-screen max-w-md mx-auto">
+    <div className="min-h-screen max-w-md mx-auto" style={{ background: "#0a0a0a" }}>
       <Header
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
@@ -42,7 +48,7 @@ export default function App() {
         onAdd={handleAdd}
         onRemove={handleRemove}
       />
-      <Cart cart={cart} />
+      <Cart cart={cart} onCheckout={() => setShowCheckout(true)} />
     </div>
   )
 }

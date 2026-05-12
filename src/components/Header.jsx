@@ -2,13 +2,13 @@ import { menu } from "../data/menu"
 
 export default function Header({ activeCategory, setActiveCategory, cartCount }) {
   return (
-    <header className="bg-neutral-900 text-white sticky top-0 z-50">
+    <header className="bg-neutral-950 text-white sticky top-0 z-50 border-b border-neutral-800">
       <div className="px-5 pt-5 pb-3 flex justify-between items-center">
         <div>
-          <div className="font-black text-3xl tracking-widest">BAZZI</div>
+          <div className="font-black text-3xl tracking-widest" style={{ color: "var(--gold)" }}>BAZZI</div>
           <div className="text-xs tracking-widest text-neutral-400 mt-0.5">ARABIAN FOOD</div>
         </div>
-        <div className="text-sm font-medium border border-neutral-600 rounded-full px-4 py-2">
+        <div className="text-sm font-medium border rounded-full px-4 py-2" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>
           Carrito ({cartCount})
         </div>
       </div>
@@ -18,11 +18,12 @@ export default function Header({ activeCategory, setActiveCategory, cartCount })
           <button
             key={section.category}
             onClick={() => setActiveCategory(section.category)}
-            className={`whitespace-nowrap text-xs tracking-wide px-4 py-1.5 rounded-full border transition-all ${
+            className="whitespace-nowrap text-xs tracking-wide px-4 py-1.5 rounded-full border transition-all"
+            style={
               activeCategory === section.category
-                ? "bg-white text-neutral-900 border-white font-medium"
-                : "border-neutral-600 text-neutral-400 hover:border-neutral-400"
-            }`}
+                ? { background: "var(--gold)", color: "#0a0a0a", borderColor: "var(--gold)", fontWeight: 600 }
+                : { borderColor: "#404040", color: "#a3a3a3" }
+            }
           >
             {section.category}
           </button>

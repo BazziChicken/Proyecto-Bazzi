@@ -5,3 +5,8 @@
 html, body, #root {
   height: 100%;
 }
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C96A;
+}
