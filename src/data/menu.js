@@ -3,7 +3,7 @@ export const menu = [
     category: "Shawarma",
     items: [
       { id: 1, name: "Shawarma Pollo", desc: "Pan árabe, pollo grillado, verduras, salsa tahini", price: 5990, tags: ["popular"] },
-      { id: 2, name: "Shawarma Mechado", desc: "Pan árabe, carne mechada, verduras, salsa ajo", price: 6490, tags: ["popular"] },
+      { id: 2, name: "Shawarma de Carne", desc: "Pan árabe, carne grillada, verduras, salsa ajo", price: 6490, tags: ["popular"] },
       { id: 3, name: "Shawarma Mixto", desc: "Pollo y mechado, todo junto", price: 6990, tags: [] },
       { id: 4, name: "Shawarma Falafel", desc: "Falafel casero, hoummus, verduras, limón", price: 5490, tags: ["veg"] },
     ]
