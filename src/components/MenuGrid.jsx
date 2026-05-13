@@ -6,7 +6,7 @@ export default function MenuGrid({ activeCategory, cart, onAdd, onRemove }) {
   if (!section) return null
 
   return (
-    <main className="px-4 py-5 pb-40">
+    <main className="px-4 py-5 pb-64">
       <h2 className="font-black text-2xl tracking-widest mb-4 uppercase" style={{ color: "#ffffff" }}>
         {section.category}
       </h2>
