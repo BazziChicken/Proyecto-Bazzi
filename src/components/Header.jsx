@@ -1,4 +1,5 @@
 import { menu } from "../data/menu"
+import logo from "../assets/LOGO_BAZZI.png"
 
 export default function Header({ activeCategory, setActiveCategory, cartCount, onInfo }) {
   return (
@@ -6,7 +7,7 @@ export default function Header({ activeCategory, setActiveCategory, cartCount, o
       <div className="px-5 pt-5 pb-3 flex justify-between items-center">
         <div className="flex items-center gap-3">
           <img
-            src="src/assets/LOGO_BAZZI.png"
+            img src={logo} alt="Bazzi Logo" className="h-14 w-14 object-contain"
             alt="Bazzi Logo"
             className="h-16 w-16 object-contain"
           />

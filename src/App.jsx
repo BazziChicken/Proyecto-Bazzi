@@ -5,6 +5,9 @@ import MenuGrid from "./components/MenuGrid"
 import Cart from "./components/Cart"
 import Checkout from "./components/Checkout"
 import Info from "./components/Info"
+import mezquita from "./assets/mezquita.png"
+import columna from "./assets/columna.png"
+
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState(menu[0].category)
@@ -42,7 +45,7 @@ export default function App() {
 
     {/* Mezquita fondo */}
     <img
-      src="/src/assets/mezquita.png"
+      src={mezquita}
       alt=""
       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none select-none"
       style={{ opacity: 0.5, zIndex: 0 }}
@@ -50,7 +53,7 @@ export default function App() {
 
     {/* Columna abajo espejada */}
     <img
-      src="/src/assets/columna.png"
+      src={columna}
       alt=""
       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full pointer-events-none select-none"
       style={{ opacity: 0.50, zIndex: 0, transform: "translateX(-50%) scaleY(-1)" }}
