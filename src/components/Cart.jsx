@@ -6,7 +6,7 @@ export default function Cart({ cart, onCheckout }) {
   if (items.length === 0) return null
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50 border-t flex flex-col" style={{ background: "#0a0a0a", borderColor: "#2a2a2a", maxHeight: "25vh" }}>
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50 border-t flex flex-col" style={{ background: "#0a0a0a", borderColor: "#2a2a2a", maxHeight: "30vh" }}>
       
       <div className="px-5 pt-4 flex justify-between items-center flex-shrink-0">
         <span className="text-sm text-neutral-500">
