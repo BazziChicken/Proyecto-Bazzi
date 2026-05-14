@@ -72,4 +72,4 @@ export const menu = [
   }
 ]
 
-export const WHATSAPP_NUMBER = "56957815593"
+export const WHATSAPP_NUMBER = "56930277317"
