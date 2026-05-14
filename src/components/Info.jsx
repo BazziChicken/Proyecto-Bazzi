@@ -9,9 +9,9 @@ export default function Info({ onBack }) {
     { dia: "Domingo", hora: "12:30  — 20:30" },
   ]
 
-  const ahora = new Date()
-  const dia = ahora.getDay()
-  const minutos = ahora.getHours() * 60 + ahora.getMinutes()
+  const ahora = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Santiago" }))
+const dia = ahora.getDay()
+const minutos = ahora.getHours() * 60 + ahora.getMinutes()
 
   const abierto = (() => {
     if (dia === 0) return minutos >= 780 && minutos < 1260
