@@ -3,7 +3,7 @@ import logo from "../assets/LOGO_BAZZI.png"
 export default function Header({ activeCategory, setActiveCategory, cartCount, onInfo, onEspecial, menu }) {
   return (
     <header className="bg-neutral-950 text-white sticky top-0 z-50 border-b" style={{ borderColor: "#2a2a2a" }}>
-      <div className="px-4 pt-4 pb-3 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 pt-4 pb-3 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img src={logo} alt="Bazzi Logo" className="h-12 w-12 object-contain" />
           <div>
@@ -35,7 +35,7 @@ export default function Header({ activeCategory, setActiveCategory, cartCount, o
         </div>
       </div>
 
-      <nav className="flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
+      <nav className="max-w-7xl mx-auto flex gap-2 px-4 pb-3 overflow-x-auto scrollbar-hide">
         {menu.map((section) => (
           <button
             key={section.category}

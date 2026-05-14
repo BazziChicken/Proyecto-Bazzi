@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { supabase } from "./supabase"
-import { WHATSAPP_NUMBER } from "./data/menu"
 import Admin from "./components/Admin"
 import Header from "./components/Header"
 import MenuGrid from "./components/MenuGrid"
 import Cart from "./components/Cart"
+import CartDesktop from "./components/CartDesktop"
 import Checkout from "./components/Checkout"
 import Info from "./components/Info"
 import Especial from "./components/Especial"
@@ -72,7 +72,7 @@ export default function App() {
   }
 
   if (loading) return (
-    <div className="min-h-screen max-w-md mx-auto flex items-center justify-center" style={{ background: "#0a0a0a" }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0a0a" }}>
       <span className="text-sm tracking-widest text-neutral-500">Cargando menú...</span>
     </div>
   )
@@ -82,21 +82,31 @@ export default function App() {
   if (showCheckout) return <Checkout cart={cart} onBack={() => setShowCheckout(false)} />
 
   return (
-  <Routes>
-    <Route path="/admin" element={<Admin />} />
-    <Route path="/" element={
-      <div className="min-h-screen max-w-md mx-auto relative overflow-hidden" style={{ background: "#0a0a0a" }}>
-        <img src={mezquita} alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none select-none" style={{ opacity: 0.9, zIndex: 0 }} />
-        <img src={columna} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full pointer-events-none select-none" style={{ opacity: 0.50, zIndex: 0, transform: "translateX(-50%) scaleY(-1)" }} />
-        <div className="relative" style={{ zIndex: 1 }}>
-          <Header activeCategory={activeCategory} setActiveCategory={setActiveCategory} cartCount={cartCount} onInfo={() => setShowInfo(true)} onEspecial={() => setShowEspecial(true)} menu={menuDB} />
-          <MenuGrid activeCategory={activeCategory} cart={cart} onAdd={handleAdd} onRemove={handleRemove} menu={menuDB} />
-          <Cart cart={cart} onCheckout={() => setShowCheckout(true)} />
-        </div>
-      </div>
-    } />
-    <Route path="/admin" element={<div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0a0a" }}><span className="text-white">Panel Admin — próximamente</span></div>} />
-  </Routes>
-)
-}
+    <Routes>
+      <Route path="/" element={
+        <div className="min-h-screen relative" style={{ background: "#0a0a0a" }}>
+          <img src={mezquita} alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none select-none" style={{ opacity: 0.9, zIndex: 0 }} />
+          <img src={columna} alt="" className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full pointer-events-none select-none" style={{ opacity: 0.50, zIndex: 0, transform: "translateX(-50%) scaleY(-1)" }} />
 
+          <div className="relative" style={{ zIndex: 1 }}>
+            <Header activeCategory={activeCategory} setActiveCategory={setActiveCategory} cartCount={cartCount} onInfo={() => setShowInfo(true)} onEspecial={() => setShowEspecial(true)} menu={menuDB} />
+
+            <div className="max-w-7xl mx-auto px-4 lg:flex lg:gap-8 lg:pt-6">
+              <div className="lg:flex-1">
+                <MenuGrid activeCategory={activeCategory} cart={cart} onAdd={handleAdd} onRemove={handleRemove} menu={menuDB} />
+              </div>
+              <div className="hidden lg:block lg:w-80">
+                <CartDesktop cart={cart} onCheckout={() => setShowCheckout(true)} />
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:hidden">
+            <Cart cart={cart} onCheckout={() => setShowCheckout(true)} />
+          </div>
+        </div>
+      } />
+      <Route path="/admin" element={<Admin />} />
+    </Routes>
+  )
+}
