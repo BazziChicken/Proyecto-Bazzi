@@ -72,11 +72,7 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
               className="w-full object-cover"
               style={{ maxHeight: "200px" }}
             />
-          ) : (
-            <div className="w-full flex items-center justify-center py-8" style={{ background: "#0a0a0a" }}>
-              <span className="text-xs text-neutral-600">Sin imagen disponible</span>
-            </div>
-          )}
+          ) : null}
           <p className="text-xs text-neutral-400 leading-relaxed p-4">{descripcion}</p>
         </div>
       )}
