@@ -9,8 +9,10 @@ import CartDesktop from "./components/CartDesktop"
 import Checkout from "./components/Checkout"
 import Info from "./components/Info"
 import Especial from "./components/Especial"
+import Inicio from "./components/Inicio"
 
 export default function App() {
+  const [showInicio, setShowInicio] = useState(true)
   const [activeCategory, setActiveCategory] = useState("")
   const [cart, setCart] = useState({})
   const [showCheckout, setShowCheckout] = useState(false)
@@ -75,6 +77,7 @@ export default function App() {
     </div>
   )
 
+  if (showInicio) return <Inicio onVerMenu={() => setShowInicio(false)} />
   if (showInfo) return <Info onBack={() => setShowInfo(false)} />
   if (showEspecial) return <Especial onBack={() => setShowEspecial(false)} />
   if (showCheckout) return <Checkout cart={cart} onBack={() => setShowCheckout(false)} onAdd={handleAdd} onRemove={handleRemove} />
