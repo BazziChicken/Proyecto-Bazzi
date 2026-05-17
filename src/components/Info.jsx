@@ -1,23 +1,22 @@
 export default function Info({ onBack }) {
   const horarios = [
-    { dia: "Lunes", hora: "12:30 — 21:30" },
-    { dia: "Martes", hora: "12:30 — 21:30" },
-    { dia: "Miércoles", hora: "12:30 — 21:30" },
-    { dia: "Jueves", hora: "12:30 — 21:30" },
-    { dia: "Viernes", hora: "12:30  — 22:30" },
-    { dia: "Sábado", hora: "12:30  — 22:30" },
-    { dia: "Domingo", hora: "12:30  — 20:30" },
-  ]
+  { dia: "Lunes", hora: "Cerrado" },
+  { dia: "Martes", hora: "13:00 — 22:00" },
+  { dia: "Miércoles", hora: "13:00 — 22:00" },
+  { dia: "Jueves", hora: "13:00 — 22:00" },
+  { dia: "Viernes", hora: "13:00 — 22:00" },
+  { dia: "Sábado", hora: "13:00 — 22:00" },
+  { dia: "Domingo", hora: "13:00 — 22:00" },
+]
 
   const ahora = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Santiago" }))
 const dia = ahora.getDay()
 const minutos = ahora.getHours() * 60 + ahora.getMinutes()
 
   const abierto = (() => {
-    if (dia === 0) return minutos >= 780 && minutos < 1260
-    if (dia === 5 || dia === 6) return minutos >= 780 && minutos < 1380
-    return minutos >= 780 && minutos < 1320
-  })()
+  if (dia === 1) return false
+  return minutos >= 780 && minutos < 1320
+})()
 
   return (
     <div className="min-h-screen max-w-md mx-auto pb-10" style={{ background: "#0a0a0a" }}>
