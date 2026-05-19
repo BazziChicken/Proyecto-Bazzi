@@ -1,26 +1,21 @@
 export default function Especial({ onBack }) {
   const servicios = [
-    {
-      titulo: "Cenas Árabes",
-      desc: "Si tienes una fecha importante que celebrar, podemos preparar cenas árabes especiales para que disfrutes junto a tus invitados una grata velada sin preocuparte de cocinar.",
-      detalle: "Cenas árabes desde 6 a 20 personas."
-    },
-    {
-      titulo: "Cenas y Servicio Catering",
-      desc: "Nos encargamos de la planificación de platos, decoración de mesa, servicio de atención para los comensales y la coordinación junto al chef para un resultado totalmente personalizado.",
-      detalle: "Agendas desde 15 personas."
-    },
-    {
-      titulo: "Show de Danzas Árabes",
-      desc: "Bazzi ofrece un místico y animado show para eventos especiales como cumpleaños, matrimonios, fiestas de empresa y más. Ideal para sorprender a sus invitados con la magia del medio oriente.",
-      detalle: null
-    },
-    {
-      titulo: "Productos Congelados",
-      desc: "Venta al por mayor de kibbes, hojas de parra y masa para preparación de falafels.",
-      detalle: null
-    }
-  ]
+  {
+    titulo: "Pedidos para Eventos",
+    desc: "¿Tienes una celebración, reunión de empresa o evento familiar? Preparamos pedidos grandes de pollos asados y acompañamientos para que no te preocupes de cocinar.",
+    detalle: "Consultar disponibilidad y cantidad mínima."
+  },
+  {
+    titulo: "Catering y Colaciones",
+    desc: "Ofrecemos servicio de colaciones para empresas y grupos de trabajo. Menú variado con pollos, ensaladas, papas fritas y bebidas.",
+    detalle: "Coordinar con anticipación."
+  },
+  {
+    titulo: "Pedidos al por Mayor",
+    desc: "Venta de pollos asados y acompañamientos en grandes cantidades para eventos, juntas de vecinos, celebraciones y más.",
+    detalle: null
+  }
+]
 
   return (
     <div className="min-h-screen max-w-md mx-auto pb-10" style={{ background: "#0a0a0a" }}>
@@ -49,14 +44,14 @@ export default function Especial({ onBack }) {
         ))}
 
         <a
-          href="mailto:arabianbazzi@gmail.com"
+          href="mailto:contactobazzichicken@gmail.com"
           className="w-full text-center rounded-xl py-4 text-sm font-semibold tracking-widest uppercase mt-2 transition-opacity hover:opacity-85"
           style={{ background: "var(--gold)", color: "#0a0a0a" }}
         >
           Solicita tu cotización
         </a>
 
-        <p className="text-center text-xs text-neutral-600 -mt-2">arabianbazzi@gmail.com</p>
+        <p className="text-center text-xs mt-0" style={{ color: "#a3a3a3" }}>contactobazzichicken@gmail.com</p>
 
       </div>
     </div>
