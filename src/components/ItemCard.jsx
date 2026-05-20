@@ -47,13 +47,18 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
         onClick={() => setExpanded(!expanded)}
       >
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
             <span className="text-sm font-medium text-white">{nombre}</span>
             {tags.includes("popular") && (
               <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "#1f1a0e", color: "var(--gold)", border: "1px solid #3a2e10" }}>Popular</span>
             )}
             {tags.includes("veg") && (
               <span className="text-xs px-2 py-0.5 rounded-full bg-green-950 text-green-400 border border-green-900">Vegano</span>
+            )}
+            {item.stock > 0 && (
+              <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: "#0f1f2a", color: "#60a5fa", border: "1px solid #1e3a4a" }}>
+                Stock: {item.stock}
+              </span>
             )}
           </div>
           {!expanded && (

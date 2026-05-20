@@ -28,6 +28,14 @@ export default function Inicio({ onVerMenu,onEspecial }) {
     if (diff < -50) setFotoActual((prev) => (prev - 1 + fotos.length) % fotos.length)
     touchStartX.current = null
   }
+  const ahora = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Santiago" }))
+  const dia = ahora.getDay()
+  const minutos = ahora.getHours() * 60 + ahora.getMinutes()
+
+  const abierto = (() => {
+    if (dia === 1) return false
+    return minutos >= 780 && minutos < 1320
+  })()
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "#0a0a0a" }}>
@@ -80,7 +88,12 @@ export default function Inicio({ onVerMenu,onEspecial }) {
         Lunes cerrado
         </p>
       </div>
-
+          {!abierto && (
+            <div className="mx-4 mt-3 border rounded-xl p-4 text-center" style={{ background: "#1a0000", borderColor: "#4a0000" }}>
+              <p className="text-sm font-semibold" style={{ color: "#ff4444" }}>Estamos cerrados en este momento</p>
+              <p className="text-xs mt-1" style={{ color: "#606060" }}>Martes a Domingo · 13:00 - 22:00</p>
+            </div>
+          )}
       <div className="px-4 mt-auto pb-10 pt-8 flex flex-col gap-5">
         <button
           onClick={onVerMenu}

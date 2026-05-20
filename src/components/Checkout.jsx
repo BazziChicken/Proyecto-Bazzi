@@ -15,6 +15,8 @@ export default function Checkout({ cart, onBack, onAdd, onRemove }) {
     if (!nombre.trim()) { alert("Ingresa tu nombre para continuar."); return }
     if (!pago) { alert("Selecciona un método de pago."); return }
     if (horario === "programado" && !hora) { alert("Ingresa la hora para tu pedido."); return }
+    const ahora = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Santiago" }))
+    const horaActual = ahora.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit", hour12: false })
 
     const lines = items.map((i) => {
       const agregados = i.agregados && i.agregados.length > 0 ? ` (${i.agregados.join(", ")})` : ""
@@ -23,10 +25,11 @@ export default function Checkout({ cart, onBack, onAdd, onRemove }) {
     const horarioTexto = horario === "ahora" ? "Lo antes posible" : `Para las ${hora}`
 
     const msg =
-      `*Pedido BAZZI*\n\n` +
+      `*Pedido BAZZI CHICKEN*\n\n` +
       `*Cliente:* ${nombre}\n` +
       `*Método de pago:* ${pago}\n` +
       `*Horario:* ${horarioTexto}\n\n` +
+      `*Hora del pedido:* ${horaActual}\n\n` +
       `${lines}\n\n` +
       `*Total: ${fmt(total)}*`
 

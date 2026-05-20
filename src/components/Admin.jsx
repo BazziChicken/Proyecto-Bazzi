@@ -78,16 +78,21 @@ function Panel() {
   }
 
   const handleGuardar = async () => {
-    if (editando) {
-      await supabase.from("productos").update(form).eq("id", editando)
-    } else {
-      await supabase.from("productos").insert(form)
-    }
-    setEditando(null)
-    setNuevo(false)
-    setForm({ nombre: "", descripcion: "", precio: "", categoria: "", tags: "", disponible: true, orden: 0 })
-    fetchProductos()
+  const dataToSave = {
+    ...form,
+    stock: form.stock === "" ? null : Number(form.stock)
   }
+  
+  if (editando) {
+    await supabase.from("productos").update(dataToSave).eq("id", editando)
+  } else {
+    await supabase.from("productos").insert(dataToSave)
+  }
+  setEditando(null)
+  setNuevo(false)
+  setForm({ nombre: "", descripcion: "", precio: "", categoria: "", tags: "", disponible: true, orden: 0, imagen_url: "", stock: "" })
+  fetchProductos()
+}
 
   const handleEliminar = async (id) => {
     if (!confirm("¿Eliminar este producto?")) return
@@ -115,13 +120,13 @@ function Panel() {
   const abrirEditar = (p) => {
     setEditando(p.id)
     setNuevo(false)
-    setForm({ nombre: p.nombre, descripcion: p.descripcion, precio: p.precio, categoria: p.categoria, tags: p.tags || "", disponible: p.disponible, orden: p.orden || 0, imagen_url: p.imagen_url || "" })
+    setForm({ nombre: p.nombre, descripcion: p.descripcion, precio: p.precio, categoria: p.categoria, tags: p.tags || "", disponible: p.disponible, orden: p.orden || 0, imagen_url: p.imagen_url || "", stock: p.stock || ""})
   }
 
   const abrirNuevo = () => {
     setNuevo(true)
     setEditando(null)
-    setForm({ nombre: "", descripcion: "", precio: "", categoria: "", tags: "", disponible: true, orden: 0, imagen_url: "" })
+    setForm({ nombre: "", descripcion: "", precio: "", categoria: "", tags: "", disponible: true, orden: 0, imagen_url: "", stock: "" })
   }
 
   if (loading) return <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0a0a" }}><span className="text-neutral-500 text-sm">Cargando...</span></div>
@@ -141,6 +146,7 @@ function Panel() {
           { label: "Categoría", key: "categoria" },
           { label: "Tags (popular, veg)", key: "tags" },
           { label: "Orden", key: "orden", type: "number" },
+          { label: "Stock", key: "stock", type: "number" },
         ].map(({ label, key, type }) => (
           <div key={key} className="flex flex-col gap-1">
             <label className="text-xs tracking-widest text-neutral-400 uppercase">{label}</label>

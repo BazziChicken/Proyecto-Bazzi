@@ -24,10 +24,11 @@ export default function App() {
   useEffect(() => {
     const fetchMenu = async () => {
       const { data, error } = await supabase
-        .from("productos")
-        .select("*")
-        .eq("disponible", true)
-        .order("orden", { ascending: true })
+      .from("productos")
+      .select("*")
+      .eq("disponible", true)
+      .or("stock.gt.0,stock.is.null")
+      .order("orden", { ascending: true })
 
       if (error) {
         console.error(error)
