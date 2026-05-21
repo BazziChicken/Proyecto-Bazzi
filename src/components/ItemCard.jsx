@@ -1,11 +1,18 @@
 import { useState } from "react"
 
 const AGREGADOS = ["Arroz", "Papas fritas", "Ensalada"]
+const SALCHIPAPA_VARIANTES = [
+  { id: "sola", label: "Salchipapa sola", detail: "Precio normal", price: null },
+  { id: "mini-fruna", label: "Con Mini Fruna", detail: "$4.000", price: 4000 },
+  { id: "bebida-lata", label: "Con bebida lata", detail: "$4.800", price: 4800 }
+]
 
 export default function ItemCard({ item, qty, onAdd, onRemove }) {
   const [expanded, setExpanded] = useState(true)
   const [showAgregados, setShowAgregados] = useState(false)
+  const [showSalchipapas, setShowSalchipapas] = useState(false)
   const [seleccionados, setSeleccionados] = useState([])
+  const [bebidaLata, setBebidaLata] = useState(false)
 
   const fmt = (n) => "$" + Number(n).toLocaleString("es-CL")
   const nombre = item.nombre || item.name
@@ -13,6 +20,7 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
   const precio = item.precio || item.price
   const tags = item.tags ? item.tags.split(",").map(t => t.trim()) : []
   const esColacion = item.categoria === "Colaciones"
+  const esSalchipapa = nombre?.toLowerCase().includes("salchipapa")
 
   const toggleAgregado = (a) => {
     if (seleccionados.includes(a)) {
@@ -24,16 +32,36 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
   }
 
   const confirmarAgregados = () => {
-    const itemConAgregados = { ...item, agregados: seleccionados }
+    const agregados = bebidaLata ? [...seleccionados, "Bebida lata"] : seleccionados
+    const precioFinal = Number(precio) + (bebidaLata ? 1200 : 0)
+    const cartKey = `${item.id}:${agregados.join("|") || "sin-agregados"}`
+    const itemConAgregados = { ...item, precio: precioFinal, price: precioFinal, agregados, cartKey }
     onAdd(itemConAgregados)
     setShowAgregados(false)
     setSeleccionados([])
+    setBebidaLata(false)
+  }
+
+  const confirmarSalchipapa = (variante) => {
+    const precioFinal = variante.price || Number(precio)
+    const agregados = [variante.label]
+    const itemConVariante = {
+      ...item,
+      precio: precioFinal,
+      price: precioFinal,
+      agregados,
+      cartKey: `${item.id}:${variante.id}`
+    }
+    onAdd(itemConVariante)
+    setShowSalchipapas(false)
   }
 
   const handleAdd = (e) => {
     e.stopPropagation()
-    if (esColacion && qty === 0) {
+    if (esColacion) {
       setShowAgregados(true)
+    } else if (esSalchipapa) {
+      setShowSalchipapas(true)
     } else {
       onAdd(item)
     }
@@ -117,10 +145,21 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
                 {a}
               </button>
             ))}
+            <button
+              onClick={() => setBebidaLata(!bebidaLata)}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm border transition-all"
+              style={
+                bebidaLata
+                  ? { background: "var(--gold)", color: "#140803", borderColor: "var(--gold)", fontWeight: 800 }
+                  : { background: "rgba(255,255,255,0.04)", borderColor: "var(--line)", color: "var(--paper)" }
+              }
+            >
+              Agregar bebida lata +$1.200
+            </button>
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => { setShowAgregados(false); setSeleccionados([]) }}
+              onClick={() => { setShowAgregados(false); setSeleccionados([]); setBebidaLata(false) }}
               className="flex-1 py-3 rounded-xl text-sm border"
               style={{ borderColor: "var(--line)", color: "var(--muted)" }}
             >
@@ -136,7 +175,33 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
         </div>
       )}
 
-      {expanded && !showAgregados && (
+      {showSalchipapas && (
+        <div className="border-t px-4 py-4" style={{ borderColor: "var(--line)", background: "rgba(8, 5, 4, 0.78)" }}>
+          <p className="text-xs text-white mb-3 font-bold tracking-wide">Elige una opcion</p>
+          <div className="flex flex-col gap-2 mb-4">
+            {SALCHIPAPA_VARIANTES.map((variante) => (
+              <button
+                key={variante.id}
+                onClick={() => confirmarSalchipapa(variante)}
+                className="w-full flex justify-between gap-3 text-left px-4 py-3 rounded-xl text-sm border transition-all hover:bg-white/10"
+                style={{ background: "rgba(255,255,255,0.04)", borderColor: "var(--line)", color: "var(--paper)" }}
+              >
+                <span className="font-bold">{variante.label}</span>
+                <span style={{ color: "var(--gold)" }}>{variante.detail}</span>
+              </button>
+            ))}
+          </div>
+          <button
+            onClick={() => setShowSalchipapas(false)}
+            className="w-full py-3 rounded-xl text-sm border"
+            style={{ borderColor: "var(--line)", color: "var(--muted)" }}
+          >
+            Cancelar
+          </button>
+        </div>
+      )}
+
+      {expanded && !showAgregados && !showSalchipapas && (
         <div className="border-t" style={{ borderColor: "var(--line)" }}>
           {item.imagen_url ? (
             <img

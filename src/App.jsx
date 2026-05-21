@@ -53,22 +53,28 @@ export default function App() {
 
   const cartCount = Object.values(cart).reduce((sum, item) => sum + item.qty, 0)
 
+  const getCartKey = (item) => item.cartKey || String(item.id)
+
   const handleAdd = (item) => {
+    const cartKey = getCartKey(item)
     setCart((prev) => ({
       ...prev,
-      [item.id]: { ...item, qty: (prev[item.id]?.qty || 0) + 1 }
+      [cartKey]: { ...item, cartKey, qty: (prev[cartKey]?.qty || 0) + 1 }
     }))
   }
 
   const handleRemove = (item) => {
     setCart((prev) => {
-      const qty = (prev[item.id]?.qty || 0) - 1
+      const cartKey = item.cartKey || Object.keys(prev).find((key) => String(prev[key].id) === String(item.id))
+      if (!cartKey) return prev
+
+      const qty = (prev[cartKey]?.qty || 0) - 1
       if (qty <= 0) {
         const next = { ...prev }
-        delete next[item.id]
+        delete next[cartKey]
         return next
       }
-      return { ...prev, [item.id]: { ...prev[item.id], qty } }
+      return { ...prev, [cartKey]: { ...prev[cartKey], qty } }
     })
   }
 

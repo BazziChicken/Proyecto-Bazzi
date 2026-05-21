@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import logo from "../assets/LOGGO_BAZZI_CHICKEN.png"
 import foto1 from "../assets/foto_inicio3.jpg"
+import foto2 from "../assets/foto_inicio2.jpeg"
 
 const slides = [
   {
@@ -9,7 +10,9 @@ const slides = [
     alt: "Video de Bazzi Chicken",
     duration: 10000
   },
+  { type: "image", src: foto2, alt: "Foto de Bazzi Chicken", duration: 6000 },
   { type: "image", src: foto1, alt: "Foto de Bazzi Chicken", duration: 3000 }
+  
 ]
 
 export default function Inicio({ onVerMenu, onEspecial }) {

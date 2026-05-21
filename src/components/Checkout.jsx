@@ -52,7 +52,7 @@ export default function Checkout({ cart, onBack, onAdd, onRemove }) {
       <div className="px-4 pt-5 flex flex-col gap-5">
         <div className="glass-panel rounded-2xl p-4 flex flex-col gap-3">
           {items.map((item) => (
-            <div key={item.id} className="flex justify-between items-center text-sm gap-2">
+            <div key={item.cartKey || item.id} className="flex justify-between items-center text-sm gap-2">
               <span className="flex-1 min-w-0" style={{ color: "var(--muted)" }}>
                 <span className="block truncate text-white font-semibold">{item.nombre || item.name}</span>
                 {item.agregados && item.agregados.length > 0 && (

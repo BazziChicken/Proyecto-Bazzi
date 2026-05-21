@@ -21,7 +21,7 @@ export default function Cart({ cart, onCheckout }) {
 
       <div className="px-5 py-3 flex flex-col gap-1.5 overflow-y-auto flex-1 scrollbar-hide">
         {items.map((item) => (
-          <div key={item.id} className="flex justify-between text-sm gap-3">
+          <div key={item.cartKey || item.id} className="flex justify-between text-sm gap-3">
             <span className="truncate" style={{ color: "var(--muted)" }}>
               {item.nombre || item.name}
               {item.agregados && item.agregados.length > 0 && (

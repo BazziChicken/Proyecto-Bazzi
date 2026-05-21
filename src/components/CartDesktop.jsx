@@ -14,7 +14,7 @@ export default function CartDesktop({ cart, onCheckout }) {
           <p className="text-xs text-center py-6" style={{ color: "var(--muted)" }}>Agrega productos al carrito</p>
         ) : (
           items.map((item) => (
-            <div key={item.id} className="flex justify-between text-sm">
+            <div key={item.cartKey || item.id} className="flex justify-between text-sm">
               <span style={{ color: "var(--muted)" }}>
                 {item.nombre || item.name}
                 {item.agregados && item.agregados.length > 0 && (
