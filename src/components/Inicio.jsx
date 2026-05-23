@@ -114,13 +114,13 @@ export default function Inicio({ onVerMenu, onEspecial }) {
 
       <div className="mx-4 max-w-md sm:mx-auto mt-4 glass-panel rounded-2xl p-4">
         <p className="text-sm text-center font-semibold text-white">Av. El Descanso 1400, Local 14, Maipú</p>
-        <p className="text-xs text-center mt-1" style={{ color: "var(--muted)" }}>Martes a Domingo · 13:00 - 22:00 · Lunes cerrado</p>
+        <p className="text-xs text-center mt-1" style={{ color: "var(--muted)" }}>Martes a Domingo · 12:00 - 18:30 · Lunes cerrado</p>
       </div>
 
       {!abierto && (
         <div className="mx-4 max-w-md sm:mx-auto mt-3 border rounded-2xl p-4 text-center" style={{ background: "rgba(55, 10, 10, 0.76)", borderColor: "rgba(248, 113, 113, 0.26)" }}>
           <p className="text-sm font-semibold text-red-200">Estamos cerrados en este momento</p>
-          <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>Volvemos de martes a domingo, 13:00 - 22:00</p>
+          <p className="text-xs mt-1" style={{ color: "var(--muted)" }}>Volvemos de martes a domingo, 12:00 - 18:30</p>
         </div>
       )}
 
