@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 import logo from "../assets/LOGGO_BAZZI_CHICKEN.png"
 import foto1 from "../assets/foto_inicio2.jpeg"
-
+import foto2 from "../assets/foto_inicio3.jpeg"
 const slides = [
   {
     type: "video",
@@ -10,7 +10,7 @@ const slides = [
     duration: 10000
   },
   { type: "image", src: foto1, alt: "Foto de Bazzi Chicken", duration: 6000 },
-  
+  { type: "image", src: foto2, alt: "Foto de Bazzi Chicken", duration: 6000 }
 ]
 
 export default function Inicio({ onVerMenu, onEspecial }) {
@@ -62,7 +62,7 @@ export default function Inicio({ onVerMenu, onEspecial }) {
 
       <div
         className="relative mx-4 w-[calc(100%-2rem)] max-w-md sm:mx-auto sm:w-full rounded-[1.75rem] overflow-hidden border"
-        style={{ height: "min(58vh, 520px)", minHeight: "370px", borderColor: "var(--line)", boxShadow: "0 26px 60px rgba(0,0,0,0.42)" }}
+        style={{ height: "min(75vh, 700px)", minHeight: "500px", borderColor: "var(--line)", boxShadow: "0 26px 60px rgba(0,0,0,0.42)" }}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
