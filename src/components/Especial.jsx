@@ -47,13 +47,13 @@ export default function Especial({ onBack }) {
         ))}
 
         <a
-          href="mailto:contactobazzichicken@gmail.com"
+          href="mailto:bazzichicken@gmail.com"
           className="w-full text-center rounded-2xl py-4 text-sm font-black tracking-widest uppercase mt-2 transition-all hover:brightness-110 warm-button"
         >
           Solicita tu cotización
         </a>
 
-        <p className="text-center text-xs mt-0" style={{ color: "var(--muted)" }}>contactobazzichicken@gmail.com</p>
+        <p className="text-center text-xs mt-0" style={{ color: "#a3a3a3" }}>bazzichicken@gmail.com</p>
       </div>
     </div>
   )
