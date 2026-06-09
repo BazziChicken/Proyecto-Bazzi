@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from "react"
 import logo from "../assets/LOGGO_BAZZI_CHICKEN.png"
 import foto1 from "../assets/foto_inicio2.jpeg"
 import foto2 from "../assets/foto_inicio3.jpeg"
+import foto3 from "../assets/foto_inicio4.jpeg"
+
 
 const slides = [
+  { type: "image", src: foto3, alt: "Foto de cerrado", duration: 6000 },
   {
     type: "video",
     src: "https://gnenxuwzljdguzftflov.supabase.co/storage/v1/object/public/productos/video_inicio.mp4",
