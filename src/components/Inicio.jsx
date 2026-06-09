@@ -41,10 +41,7 @@ export default function Inicio({ onVerMenu, onEspecial }) {
   const dia = ahora.getDay()
   const minutos = ahora.getHours() * 60 + ahora.getMinutes()
 
-  const abierto = (() => {
-    if (dia === 1) return false
-    return minutos >= 720 && minutos < 1110
-  })()
+  const abierto = false
 
   return (
     <div className="min-h-screen flex flex-col app-surface safe-bottom">
