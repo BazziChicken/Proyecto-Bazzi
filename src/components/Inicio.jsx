@@ -2,11 +2,8 @@ import { useState, useEffect, useRef } from "react"
 import logo from "../assets/LOGGO_BAZZI_CHICKEN.png"
 import foto1 from "../assets/foto_inicio2.jpeg"
 import foto2 from "../assets/foto_inicio3.jpeg"
-import foto3 from "../assets/foto_inicio4.jpeg"
-
 
 const slides = [
-  { type: "image", src: foto3, alt: "Foto de cerrado", duration: 6000 },
   {
     type: "video",
     src: "https://gnenxuwzljdguzftflov.supabase.co/storage/v1/object/public/productos/video_inicio.mp4",
@@ -44,7 +41,10 @@ export default function Inicio({ onVerMenu, onEspecial }) {
   const dia = ahora.getDay()
   const minutos = ahora.getHours() * 60 + ahora.getMinutes()
 
-  const abierto = false
+  const abierto = (() => {
+    if (dia === 1) return false
+    return minutos >= 720 && minutos < 1110
+  })()
 
   return (
     <div className="min-h-screen flex flex-col app-surface safe-bottom">
