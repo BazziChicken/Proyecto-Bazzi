@@ -2,7 +2,7 @@ import { useState } from "react"
 import { getProductDecisions } from "../utils/productDecisions"
 
 export default function ItemCard({ item, qty, onAdd, onRemove }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
   const [showDecisiones, setShowDecisiones] = useState(false)
   const [seleccionados, setSeleccionados] = useState({})
   const [fotoExpandida, setFotoExpandida] = useState(false)
