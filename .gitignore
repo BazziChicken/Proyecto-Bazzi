@@ -14,6 +14,7 @@ dist-ssr
 
 # Local AI skills
 .agents/
+.claude/
 skills-lock.json
 .npm-cache/
 
