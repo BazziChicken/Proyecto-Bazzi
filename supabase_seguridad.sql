@@ -19,6 +19,13 @@ drop policy if exists "productos_insert_admin"    on public.productos;
 drop policy if exists "productos_update_admin"    on public.productos;
 drop policy if exists "productos_delete_admin"    on public.productos;
 
+-- 2b. El proyecto ya tenia una politica vieja de lectura sin filtro
+-- ("productos: lectura para todos", roles anon+authenticated, sin
+-- condicion). Como las policies de SELECT se combinan con OR, esa
+-- policy anulaba el filtro de "productos_select_publico" de abajo y
+-- dejaba ver productos con disponible=false al publico. Se elimina.
+drop policy if exists "productos: lectura para todos" on public.productos;
+
 -- 3. Visitantes del sitio (anon): solo ven productos disponibles
 create policy "productos_select_publico"
   on public.productos
