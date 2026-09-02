@@ -7,7 +7,7 @@ export default function Header({ activeCategory, setActiveCategory, cartCount, o
         <div className="flex items-center gap-2 min-w-0 cursor-pointer" onClick={onInicio}>
           <img src={logo} alt="Bazzi Logo" className="h-14 w-14 sm:h-16 sm:w-16 object-contain drop-shadow-[0_8px_18px_rgba(255,106,26,0.22)]" />
           <div className="min-w-0">
-            <div className="font-black text-lg sm:text-2xl tracking-[0.08em] leading-none truncate" style={{ color: "var(--gold)" }}>BAZZI CHICKEN</div>
+            <div className="font-display font-black text-lg sm:text-2xl tracking-[0.08em] leading-none truncate" style={{ color: "var(--gold)" }}>BAZZI CHICKEN</div>
             <div className="text-[10px] sm:text-xs tracking-widest mt-1" style={{ color: "var(--muted)" }}>MÁS QUE POLLOS</div>
           </div>
         </div>

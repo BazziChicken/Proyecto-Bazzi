@@ -28,7 +28,7 @@ const minutos = ahora.getHours() * 60 + ahora.getMinutes()
         >
           Volver
         </button>
-        <span className="font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Información</span>
+        <span className="font-display font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Información</span>
       </div>
 
       <div className="px-4 pt-5 flex flex-col gap-5">

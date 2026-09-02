@@ -46,7 +46,7 @@ export default function Checkout({ cart, onBack, onAdd, onRemove }) {
         >
           Volver
         </button>
-        <span className="font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Tu pedido</span>
+        <span className="font-display font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Tu pedido</span>
       </div>
 
       <div className="px-4 pt-5 flex flex-col gap-5">

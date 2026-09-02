@@ -40,8 +40,8 @@ function Login({ onLogin }) {
   }
 
   return (
-    <div className="min-h-screen max-w-md mx-auto flex flex-col items-center justify-center px-6" style={{ background: "#0a0a0a" }}>
-      <div className="font-black text-3xl tracking-widest mb-1" style={{ color: "var(--gold)" }}>BAZZI</div>
+    <div className="min-h-screen max-w-md mx-auto flex flex-col items-center justify-center px-6 app-surface">
+      <div className="font-display font-black text-3xl tracking-widest mb-1" style={{ color: "var(--gold)" }}>BAZZI</div>
       <div className="text-xs tracking-widest text-neutral-500 mb-10">PANEL DE ADMINISTRACIÓN</div>
 
       <div className="w-full flex flex-col gap-4">
@@ -51,7 +51,7 @@ function Login({ onLogin }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full rounded-xl px-4 py-3 text-sm text-white outline-none border"
-          style={{ background: "#111111", borderColor: "#2a2a2a" }}
+          style={{ background: "rgba(255,255,255,0.04)", borderColor: "var(--line)" }}
         />
         <input
           type="password"
@@ -60,7 +60,7 @@ function Login({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleLogin()}
           className="w-full rounded-xl px-4 py-3 text-sm text-white outline-none border"
-          style={{ background: "#111111", borderColor: "#2a2a2a" }}
+          style={{ background: "rgba(255,255,255,0.04)", borderColor: "var(--line)" }}
         />
         {error && <p className="text-xs text-red-400">{error}</p>}
         <button
@@ -202,13 +202,13 @@ function Panel() {
     }))
   }
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0a0a" }}><span className="text-neutral-500 text-sm">Cargando...</span></div>
+  if (loading) return <div className="min-h-screen flex items-center justify-center app-surface"><span className="text-neutral-500 text-sm">Cargando...</span></div>
 
   if (editando || nuevo) return (
-    <div className="min-h-screen max-w-md mx-auto px-5 py-6" style={{ background: "#0a0a0a" }}>
+    <div className="min-h-screen max-w-md mx-auto px-5 py-6 app-surface">
       <div className="flex items-center gap-4 mb-6">
-        <button onClick={() => { setEditando(null); setNuevo(false) }} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "#404040", color: "#a3a3a3" }}>Volver</button>
-        <span className="font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>{nuevo ? "Nuevo producto" : "Editar producto"}</span>
+        <button onClick={() => { setEditando(null); setNuevo(false) }} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "var(--line)", color: "var(--muted)" }}>Volver</button>
+        <span className="font-display font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>{nuevo ? "Nuevo producto" : "Editar producto"}</span>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -228,7 +228,7 @@ function Panel() {
               value={form[key]}
               onChange={(e) => setForm((prev) => ({ ...prev, [key]: e.target.value }))}
               className="rounded-xl px-4 py-3 text-sm text-white outline-none border"
-              style={{ background: "#111111", borderColor: "#2a2a2a" }}
+              style={{ background: "rgba(255,255,255,0.04)", borderColor: "var(--line)" }}
             />
           </div>
         ))}
@@ -245,13 +245,13 @@ function Panel() {
           <button
             onClick={() => setForm((prev) => ({ ...prev, disponible: !prev.disponible }))}
             className="rounded-full px-4 py-1.5 text-xs font-medium border transition-all"
-            style={form.disponible ? { background: "var(--gold)", color: "#0a0a0a", borderColor: "var(--gold)" } : { borderColor: "#404040", color: "#a3a3a3" }}
+            style={form.disponible ? { background: "var(--gold)", color: "#0a0a0a", borderColor: "var(--gold)" } : { borderColor: "var(--line)", color: "var(--muted)" }}
           >
             {form.disponible ? "Sí" : "No"}
           </button>
         </div>
 
-        <div className="border rounded-2xl p-4 mt-2" style={{ borderColor: "#2a2a2a", background: "#0f0f0f" }}>
+        <div className="border rounded-2xl p-4 mt-2" style={{ borderColor: "var(--line)", background: "#0f0f0f" }}>
           <div className="flex items-center justify-between gap-3 mb-3">
             <div>
               <label className="text-xs tracking-widest text-neutral-400 uppercase">Decisiones</label>
@@ -271,7 +271,7 @@ function Panel() {
           ) : (
             <div className="flex flex-col gap-4">
               {form.decisiones.map((decision, decisionIndex) => (
-                <div key={decisionIndex} className="border rounded-xl p-3" style={{ borderColor: "#2a2a2a", background: "#111111" }}>
+                <div key={decisionIndex} className="border rounded-xl p-3" style={{ borderColor: "var(--line)", background: "rgba(255,255,255,0.04)" }}>
                   <div className="flex justify-between gap-2 mb-3">
                     <input
                       type="text"
@@ -279,7 +279,7 @@ function Panel() {
                       value={decision.titulo}
                       onChange={(e) => updateDecision(decisionIndex, "titulo", e.target.value)}
                       className="min-w-0 flex-1 rounded-xl px-3 py-2 text-xs text-white outline-none border"
-                      style={{ background: "#0a0a0a", borderColor: "#2a2a2a" }}
+                      style={{ background: "#0a0a0a", borderColor: "var(--line)" }}
                     />
                     <button
                       onClick={() => removeDecision(decisionIndex)}
@@ -294,7 +294,7 @@ function Panel() {
                     <button
                       onClick={() => updateDecision(decisionIndex, "tipo", decision.tipo === "single" ? "multiple" : "single")}
                       className="rounded-xl min-h-10 text-xs border"
-                      style={{ borderColor: "#404040", color: "#d4d4d4" }}
+                      style={{ borderColor: "var(--line)", color: "#d4d4d4" }}
                     >
                       {decision.tipo === "single" ? "Una opcion" : "Varias opciones"}
                     </button>
@@ -306,14 +306,14 @@ function Panel() {
                       value={decision.tipo === "single" ? 1 : decision.max}
                       onChange={(e) => updateDecision(decisionIndex, "max", e.target.value)}
                       className="rounded-xl px-3 py-2 text-xs text-white outline-none border disabled:opacity-40"
-                      style={{ background: "#0a0a0a", borderColor: "#2a2a2a" }}
+                      style={{ background: "#0a0a0a", borderColor: "var(--line)" }}
                     />
                   </div>
 
                   <button
                     onClick={() => updateDecision(decisionIndex, "requerido", !decision.requerido)}
                     className="rounded-full px-3 py-1.5 text-xs border mb-3"
-                    style={decision.requerido ? { background: "var(--gold)", color: "#0a0a0a", borderColor: "var(--gold)" } : { borderColor: "#404040", color: "#a3a3a3" }}
+                    style={decision.requerido ? { background: "var(--gold)", color: "#0a0a0a", borderColor: "var(--gold)" } : { borderColor: "var(--line)", color: "var(--muted)" }}
                   >
                     {decision.requerido ? "Obligatorio" : "Opcional"}
                   </button>
@@ -327,7 +327,7 @@ function Panel() {
                           value={option.nombre}
                           onChange={(e) => updateDecisionOption(decisionIndex, optionIndex, "nombre", e.target.value)}
                           className="min-w-0 rounded-xl px-3 py-2 text-xs text-white outline-none border"
-                          style={{ background: "#0a0a0a", borderColor: "#2a2a2a" }}
+                          style={{ background: "#0a0a0a", borderColor: "var(--line)" }}
                         />
                         <input
                           type="number"
@@ -335,7 +335,7 @@ function Panel() {
                           value={option.precio}
                           onChange={(e) => updateDecisionOption(decisionIndex, optionIndex, "precio", e.target.value)}
                           className="min-w-0 rounded-xl px-2 py-2 text-xs text-white outline-none border"
-                          style={{ background: "#0a0a0a", borderColor: "#2a2a2a" }}
+                          style={{ background: "#0a0a0a", borderColor: "var(--line)" }}
                         />
                         <input
                           type="number"
@@ -343,7 +343,7 @@ function Panel() {
                           value={option.precioFinal}
                           onChange={(e) => updateDecisionOption(decisionIndex, optionIndex, "precioFinal", e.target.value)}
                           className="min-w-0 rounded-xl px-2 py-2 text-xs text-white outline-none border"
-                          style={{ background: "#0a0a0a", borderColor: "#2a2a2a" }}
+                          style={{ background: "#0a0a0a", borderColor: "var(--line)" }}
                         />
                         <button
                           onClick={() => removeDecisionOption(decisionIndex, optionIndex)}
@@ -359,7 +359,7 @@ function Panel() {
                   <button
                     onClick={() => addDecisionOption(decisionIndex)}
                     className="w-full rounded-xl border py-2 text-xs mt-2"
-                    style={{ borderColor: "#404040", color: "#a3a3a3" }}
+                    style={{ borderColor: "var(--line)", color: "var(--muted)" }}
                   >
                     + Agregar opcion
                   </button>
@@ -381,12 +381,12 @@ function Panel() {
   )
 
   return (
-    <div className="min-h-screen max-w-md mx-auto px-5 py-6" style={{ background: "#0a0a0a" }}>
+    <div className="min-h-screen max-w-md mx-auto px-5 py-6 app-surface">
       <div className="flex justify-between items-center mb-4">
-        <span className="font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Productos</span>
+        <span className="font-display font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Productos</span>
         <div className="flex gap-2">
           <button onClick={abrirNuevo} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>+ Nuevo</button>
-          <button onClick={handleLogout} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "#404040", color: "#a3a3a3" }}>Salir</button>
+          <button onClick={handleLogout} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "var(--line)", color: "var(--muted)" }}>Salir</button>
         </div>
       </div>
 
@@ -396,15 +396,15 @@ function Panel() {
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
         className="w-full rounded-xl px-4 py-3 text-sm text-white outline-none border mb-4"
-        style={{ background: "#111111", borderColor: "#2a2a2a" }}
+        style={{ background: "rgba(255,255,255,0.04)", borderColor: "var(--line)" }}
       />
 
       <div className="flex flex-col gap-3">
         {productos.filter(p => p.nombre.toLowerCase().includes(busqueda.toLowerCase())).map((p) => (
-          <div key={p.id} className="border rounded-xl p-4" style={{ background: "#111111", borderColor: "#2a2a2a" }}>
+          <div key={p.id} className="glass-panel rounded-xl p-4">
             <div className="flex justify-between items-start gap-2 mb-1">
               <span className="text-sm font-medium text-white">{p.nombre}</span>
-              <span className="text-xs px-2 py-0.5 rounded-full flex-shrink-0" style={p.disponible ? { background: "#0f2a0f", color: "#4ade80" } : { background: "#2a0f0f", color: "#f87171" }}>
+              <span className="text-xs px-2 py-0.5 rounded-full flex-shrink-0" style={p.disponible ? { background: "rgba(157,182,127,0.14)", color: "var(--sage)", border: "1px solid rgba(157,182,127,0.28)" } : { background: "rgba(248,113,113,0.12)", color: "#f87171", border: "1px solid rgba(248,113,113,0.28)" }}>
                 {p.disponible ? "Activo" : "Inactivo"}
               </span>
             </div>
@@ -414,8 +414,8 @@ function Panel() {
               <p className="text-xs mb-3" style={{ color: "var(--gold)" }}>Con decisiones configuradas</p>
             )}
             <div className="flex gap-2">
-              <button onClick={() => abrirEditar(p)} className="text-xs border rounded-full px-3 py-1.5 flex-1" style={{ borderColor: "#404040", color: "#a3a3a3" }}>Editar</button>
-              <button onClick={() => handleToggle(p.id, p.disponible)} className="text-xs border rounded-full px-3 py-1.5 flex-1" style={{ borderColor: "#404040", color: "#a3a3a3" }}>{p.disponible ? "Desactivar" : "Activar"}</button>
+              <button onClick={() => abrirEditar(p)} className="text-xs border rounded-full px-3 py-1.5 flex-1" style={{ borderColor: "var(--line)", color: "var(--muted)" }}>Editar</button>
+              <button onClick={() => handleToggle(p.id, p.disponible)} className="text-xs border rounded-full px-3 py-1.5 flex-1" style={{ borderColor: "var(--line)", color: "var(--muted)" }}>{p.disponible ? "Desactivar" : "Activar"}</button>
               <button onClick={() => handleEliminar(p.id)} className="text-xs border rounded-full px-3 py-1.5" style={{ borderColor: "#7f1d1d", color: "#f87171" }}>Eliminar</button>
             </div>
           </div>

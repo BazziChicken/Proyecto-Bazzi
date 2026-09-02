@@ -57,10 +57,10 @@ export default function Inicio({ onVerMenu, onEspecial }) {
           <img src={logo} alt="Bazzi Chicken" className="w-24 h-24 object-contain drop-shadow-[0_12px_28px_rgba(255,106,26,0.24)]" />
           <div className="min-w-0">
             <p className="text-xs tracking-[0.22em] uppercase" style={{ color: "var(--muted)" }}>Maipú</p>
-            <h1 className="font-black text-4xl tracking-[0.08em] leading-none mt-1" style={{ color: "var(--gold)" }}>
+            <h1 className="font-display font-black text-4xl tracking-[0.02em] leading-none mt-1" style={{ color: "var(--gold)" }}>
               BAZZI
             </h1>
-            <p className="font-black text-xl tracking-[0.12em] leading-none text-white">CHICKEN</p>
+            <p className="font-display font-black text-xl tracking-[0.06em] leading-none text-white mt-0.5">CHICKEN</p>
           </div>
         </div>
       </section>
@@ -97,6 +97,23 @@ export default function Inicio({ onVerMenu, onEspecial }) {
 
         <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.04) 24%, rgba(7,4,2,0.78) 100%)" }} />
 
+        <button
+          onClick={() => setFotoActual((prev) => (prev - 1 + slides.length) % slides.length)}
+          aria-label="Foto anterior"
+          className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full items-center justify-center text-white text-lg transition-colors hover:bg-black/50"
+          style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(255,255,255,0.18)" }}
+        >
+          ‹
+        </button>
+        <button
+          onClick={() => setFotoActual((prev) => (prev + 1) % slides.length)}
+          aria-label="Foto siguiente"
+          className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full items-center justify-center text-white text-lg transition-colors hover:bg-black/50"
+          style={{ background: "rgba(0,0,0,0.35)", border: "1px solid rgba(255,255,255,0.18)" }}
+        >
+          ›
+        </button>
+
         <div className="absolute left-5 right-5 bottom-5">
           <div className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold mb-3" style={{ background: abierto ? "rgba(20, 83, 45, 0.82)" : "rgba(127, 29, 29, 0.82)", color: abierto ? "#bbf7d0" : "#fecaca" }}>
             <span className="w-2 h-2 rounded-full" style={{ background: abierto ? "#4ade80" : "#f87171" }} />
@@ -107,9 +124,11 @@ export default function Inicio({ onVerMenu, onEspecial }) {
 
         <div className="absolute top-4 right-4 flex gap-2">
           {slides.map((_, i) => (
-            <div
+            <button
               key={i}
-              className="h-2 rounded-full transition-all"
+              onClick={() => setFotoActual(i)}
+              aria-label={`Ir a la foto ${i + 1}`}
+              className="h-2 rounded-full transition-all cursor-pointer"
               style={{ width: i === fotoActual ? "22px" : "8px", background: i === fotoActual ? "var(--gold)" : "rgba(255,255,255,0.45)" }}
             />
           ))}
