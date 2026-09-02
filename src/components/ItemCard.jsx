@@ -2,7 +2,7 @@ import { useState } from "react"
 import { getProductDecisions } from "../utils/productDecisions"
 
 export default function ItemCard({ item, qty, onAdd, onRemove }) {
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
   const [showDecisiones, setShowDecisiones] = useState(false)
   const [seleccionados, setSeleccionados] = useState({})
   const [fotoExpandida, setFotoExpandida] = useState(false)
@@ -76,10 +76,10 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
               <span className="text-[11px] px-2 py-1 rounded-full font-bold" style={{ background: "rgba(255, 106, 26, 0.12)", color: "var(--gold)", border: "1px solid rgba(255, 106, 26, 0.24)" }}>Popular</span>
             )}
             {tags.includes("veg") && (
-              <span className="text-[11px] px-2 py-1 rounded-full bg-green-950 text-green-300 border border-green-900 font-bold">Vegano</span>
+              <span className="text-[11px] px-2 py-1 rounded-full font-bold" style={{ background: "rgba(157, 182, 127, 0.13)", color: "var(--sage)", border: "1px solid rgba(157, 182, 127, 0.3)" }}>Vegano</span>
             )}
             {item.stock > 0 && (
-              <span className="text-[11px] px-2 py-1 rounded-full" style={{ background: "rgba(96, 165, 250, 0.12)", color: "#93c5fd", border: "1px solid rgba(96, 165, 250, 0.22)" }}>
+              <span className="text-[11px] px-2 py-1 rounded-full" style={{ background: "rgba(255, 244, 223, 0.07)", color: "var(--paper)", border: "1px solid rgba(255, 244, 223, 0.2)" }}>
                 Stock: {item.stock}
               </span>
             )}
@@ -119,7 +119,12 @@ export default function ItemCard({ item, qty, onAdd, onRemove }) {
               </button>
             </div>
           )}
-          <span className="text-xs" style={{ color: "var(--muted)" }}>{expanded ? "▲" : "▼"}</span>
+          <svg
+            width="14" height="14" viewBox="0 0 20 20" fill="none"
+            style={{ color: "var(--muted)", transform: expanded ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}
+          >
+            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </div>
 

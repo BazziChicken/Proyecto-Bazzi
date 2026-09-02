@@ -27,13 +27,13 @@ export default function Especial({ onBack }) {
         >
           Volver
         </button>
-        <span className="font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Especial</span>
+        <span className="font-display font-black text-xl tracking-widest" style={{ color: "var(--gold)" }}>Especial</span>
       </div>
 
       <div className="px-4 pt-5 flex flex-col gap-4">
         <div>
           <p className="text-xs tracking-[0.22em] uppercase" style={{ color: "var(--muted)" }}>Para grupos</p>
-          <h1 className="text-3xl font-black leading-tight text-white">Bazzi para eventos y empresas</h1>
+          <h1 className="font-display text-3xl font-black leading-tight text-white">Bazzi para eventos y empresas</h1>
         </div>
 
         {servicios.map((s) => (

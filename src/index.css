@@ -16,6 +16,7 @@ html, body, #root {
   --line: rgba(255, 174, 84, 0.16);
   --muted: #b8a99b;
   --paper: #fff4df;
+  --sage: #9db67f;
 }
 
 body {
@@ -25,7 +26,7 @@ body {
     radial-gradient(circle at 18% -8%, rgba(255, 106, 26, 0.22), transparent 34rem),
     radial-gradient(circle at 88% 14%, rgba(210, 47, 18, 0.14), transparent 24rem),
     linear-gradient(180deg, #170b05 0%, var(--ink) 48%, #050302 100%);
-  font-family: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
+  font-family: "Manrope", "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
