@@ -13,7 +13,7 @@ export default function Cart({ cart, onCheckout }) {
             Tu pedido
           </span>
           <span className="text-sm text-white">
-            {items.reduce((s, i) => s + i.qty, 0)} productos
+            {items.reduce((s, i) => s + i.qty, 0) === 1 ? "1 producto" : `${items.reduce((s, i) => s + i.qty, 0)} productos`}
           </span>
         </div>
         <span className="font-black text-2xl tracking-wide" style={{ color: "var(--gold)" }}>{fmt(total)}</span>
